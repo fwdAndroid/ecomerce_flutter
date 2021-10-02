@@ -1,6 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:ecommerce_flutter/config/appconfig.dart';
+import 'package:ecommerce_flutter/config/theme.dart';
 import 'package:ecommerce_flutter/screens/home.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +17,7 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: AppRouter.onGenerateRoute,
         initialRoute: MyHomePage.routeName,
         title: 'Ecomerce Flutter',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: theme(),
         home: MyHomePage());
   }
 }

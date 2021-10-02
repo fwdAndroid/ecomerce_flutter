@@ -1,7 +1,10 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
 
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerce_flutter/modals/category_modals.dart';
 import 'package:ecommerce_flutter/widgets/customappbar.dart';
 import 'package:ecommerce_flutter/widgets/customnavbar.dart';
+import 'package:ecommerce_flutter/widgets/hero_coursal_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +23,15 @@ class MyHomePage extends StatelessWidget {
         title: 'Zero To Unicorn',
       ),
       bottomNavigationBar: CustomNavbar(),
+      body: CarouselSlider(
+          options: CarouselOptions(
+              aspectRatio: 1.5,
+              viewportFraction: 0.9,
+              enlargeCenterPage: true,
+              enlargeStrategy: CenterPageEnlargeStrategy.height),
+          items: Category.categories
+              .map((category) => HeroCoursel(category: category))
+              .toList()),
     );
   }
 }
