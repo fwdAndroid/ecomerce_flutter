@@ -1,21 +1,21 @@
 import 'package:ecommerce_flutter/widgets/customappbar.dart';
 import 'package:ecommerce_flutter/widgets/customnavbar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// ignore: use_key_in_widget_constructors
-class CartScreen extends StatelessWidget {
-  static const String routeName = '/cart';
+class ProductScreen extends StatelessWidget {
+  static const String routeName = '/product';
+
   static Route route() {
     return MaterialPageRoute(
-        settings: RouteSettings(name: routeName), builder: (_) => CartScreen());
+        settings: RouteSettings(name: routeName),
+        builder: (_) => ProductScreen());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Cart',
+        title: 'Product List',
       ),
       bottomNavigationBar: CustomNavbar(),
     );
