@@ -4,7 +4,13 @@ import 'package:flutter/material.dart';
 class ProductCard extends StatelessWidget {
   final Product product;
   final double widthFactor;
-  ProductCard({required this.product, this.widthFactor = 2.5});
+  final double leftPosition;
+  final bool isWishList;
+  ProductCard(
+      {required this.product,
+      this.widthFactor = 2.5,
+      this.leftPosition = 5,
+      this.isWishList = false});
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +27,18 @@ class ProductCard extends StatelessWidget {
         ),
         Positioned(
           top: 60,
+          left: leftPosition,
           child: Container(
-            width: MediaQuery.of(context).size.width / 2.5,
+            width: widthValues - 5 - leftPosition,
             height: 80,
             decoration: BoxDecoration(color: Colors.black.withAlpha(50)),
           ),
         ),
         Positioned(
-          top: 60,
-          left: 5,
+          top: 65,
+          left: leftPosition + 5,
           child: Container(
-            width: MediaQuery.of(context).size.width / 2.5 - 10,
+            width: widthValues - 15 - leftPosition,
             height: 80,
             decoration: BoxDecoration(color: Colors.black),
             child: Padding(
@@ -66,7 +73,15 @@ class ProductCard extends StatelessWidget {
                       onPressed: () {},
                       icon: Icon(Icons.add_circle, color: Colors.white),
                     ),
-                  )
+                  ),
+                  isWishList
+                      ? Expanded(
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.delete, color: Colors.white),
+                          ),
+                        )
+                      : SizedBox()
                 ],
               ),
             ),
