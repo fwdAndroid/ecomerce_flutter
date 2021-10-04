@@ -21,37 +21,36 @@ class WishlistScreen extends StatelessWidget {
       appBar: CustomAppBar(
         title: 'WishList',
       ),
+      bottomNavigationBar: CustomNavbar(),
       body: BlocBuilder<WishlistBloc, WishlistState>(
         builder: (context, state) {
           if (state is WishlistLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return Center(child: CircularProgressIndicator());
           }
-
           if (state is WishlistLoaded) {
             return GridView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1, childAspectRatio: 2.2),
+                crossAxisCount: 1,
+                childAspectRatio: 2.2,
+              ),
               itemCount: state.wishList.products.length,
               itemBuilder: (BuildContext context, int index) {
                 return Center(
                   child: ProductCard(
                     product: state.wishList.products[index],
                     widthFactor: 1.1,
-                    leftPosition: 100,
+                    leftPosition: 30,
                     isWishList: true,
                   ),
                 );
               },
             );
           } else {
-            return Text('SomeThing Went Wrong');
+            return Text('Some Error');
           }
         },
       ),
-      bottomNavigationBar: CustomNavbar(),
     );
   }
 }
