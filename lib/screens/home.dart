@@ -2,6 +2,7 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_flutter/blocs/category/category_bloc.dart';
+import 'package:ecommerce_flutter/blocs/product/product_bloc.dart';
 import 'package:ecommerce_flutter/modals/category_modals.dart';
 import 'package:ecommerce_flutter/modals/product_modal.dart';
 import 'package:ecommerce_flutter/widgets/customappbar.dart';
@@ -28,7 +29,9 @@ class MyHomePage extends StatelessWidget {
       appBar: CustomAppBar(
         title: 'Zero To Unicorn',
       ),
-      bottomNavigationBar: CustomNavbar(),
+      bottomNavigationBar: CustomNavbar(
+        screen: routeName,
+      ),
       body: Column(
         children: [
           BlocBuilder<CategoryBloc, CategoryState>(builder: (context, state) {
@@ -54,10 +57,37 @@ class MyHomePage extends StatelessWidget {
           //Title Section
           SectionTitle(title: "RECOMMENDED"),
           //Show Products in Coursel Slider List For
-          ProductCarousel(
-              products: Product.products
-                  .where((element) => element.isRecommended)
-                  .toList())
+          BlocBuilder<ProductBloc, ProductState>(
+            builder: (context, state) {
+              if (state is ProductLoading) {
+                return CircularProgressIndicator();
+              }
+              if (state is ProductLoaded) {
+                return ProductCarousel(
+                    products: state.product
+                        .where((element) => element.isRecommended)
+                        .toList());
+              } else {
+                return Text('Error');
+              }
+            },
+          ),
+          SectionTitle(title: "Most Popular"),
+          BlocBuilder<ProductBloc, ProductState>(
+            builder: (context, state) {
+              if (state is ProductLoading) {
+                return CircularProgressIndicator();
+              }
+              if (state is ProductLoaded) {
+                return ProductCarousel(
+                    products: state.product
+                        .where((element) => element.isPopular)
+                        .toList());
+              } else {
+                return Text('Error');
+              }
+            },
+          ),
         ],
       ),
     );

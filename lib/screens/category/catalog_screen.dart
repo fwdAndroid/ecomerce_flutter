@@ -40,7 +40,9 @@ class CatalogScreen extends StatelessWidget {
           ));
         },
       ),
-      bottomNavigationBar: const CustomNavbar(),
+      bottomNavigationBar: const CustomNavbar(
+        screen: routeName,
+      ),
     );
   }
 }

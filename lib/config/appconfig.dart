@@ -2,6 +2,7 @@ import 'package:ecommerce_flutter/modals/category_modals.dart';
 import 'package:ecommerce_flutter/modals/product_modal.dart';
 import 'package:ecommerce_flutter/screens/cart/cart_screen.dart';
 import 'package:ecommerce_flutter/screens/category/catalog_screen.dart';
+import 'package:ecommerce_flutter/screens/checkout/checkoutscreen.dart';
 import 'package:ecommerce_flutter/screens/home.dart';
 import 'package:ecommerce_flutter/screens/product/product_screen.dart';
 import 'package:ecommerce_flutter/screens/wishlist/wishlist_screen.dart';
@@ -21,6 +22,8 @@ class AppRouter {
         return WishlistScreen.route();
       case CatalogScreen.routeName:
         return CatalogScreen.route(category: settings.arguments as Category);
+      case CheckOutScreen.routeName:
+        return CheckOutScreen.route();
       default:
         return _errorRoute();
     }
